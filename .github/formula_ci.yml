@@ -1,0 +1,9 @@
+name: formula_ci
+
+# this is my workflow for the formula
+
+# The Ci automaticaly publishes new releases every time a pull request is merged into master
+on:
+  push:
+    branches:
+      - master
