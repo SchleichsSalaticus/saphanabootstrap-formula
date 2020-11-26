@@ -1,6 +1,6 @@
 name: formula_ci
 
-description: "Moving the formula from travis to Github Actions"
+#description: "Moving the formula from travis to Github Actions"
 # this is my workflow for the formula
 
 # The Ci automaticaly publishes new releases every time a pull request is merged into master
