@@ -26,7 +26,9 @@ jobs:
 
   delivery:
     needs: validation
+    steps:
 
   submit:
     needs: [validation, delivery]
     #need: job  requires the other one to pass the ci process
+    steps:
