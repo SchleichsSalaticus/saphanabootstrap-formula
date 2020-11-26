@@ -28,9 +28,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      env:
-        - FOLDER=/package
-        - PACKAGE_NAME=saphanabootstrap-formula
-         - uses: actions/checkout@master
+         FOLDER=/package
+         PACKAGE_NAME=saphanabootstrap-formula
+          - uses: actions/checkout@master
           - run: | 
             sudo docker pull shap/continuous_deliver:latest
             docker run -t -v "$(pwd):/package" -w /package \
