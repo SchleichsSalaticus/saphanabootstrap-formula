@@ -20,7 +20,7 @@ jobs:
       #Checks out a copy of your repository on the ubuntu-latest machine
      - uses: actions/checkout@master
         run: ls -all
-        run:  cd ci/
+        run: cd ci/
         run: ./validate-formula.sh
 
   delivery: 
