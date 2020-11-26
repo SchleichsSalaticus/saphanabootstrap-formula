@@ -16,18 +16,18 @@ jobs:
   #every step is a seperate action 
   validation: 
     runs-on: ubuntu-latest
-     steps:
+    steps:
       #Checks out a copy of your repository on the ubuntu-latest machine
-    - uses: actions/checkout@master
-       run: ls -all
-       run:  cd ci/
-       run: ./validate-formula.sh
+     - uses: actions/checkout@master
+        run: ls -all
+        run:  cd ci/
+        run: ./validate-formula.sh
 
   delivery: 
-    needs: validation
+      needs: validation
 
 
 
   submit:
-    needs: [validation, delivery]  
+     needs: [validation, delivery]  
     #need: job  requires the other one to pass the ci process
