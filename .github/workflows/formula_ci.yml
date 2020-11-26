@@ -20,6 +20,7 @@ jobs:
       #Checks out a copy of your repository on the ubuntu-latest machine
       - uses: actions/checkout@master
       - run: |
+          apt-get install salt-api
           ci/validate-formula.sh
 
   delivery:
