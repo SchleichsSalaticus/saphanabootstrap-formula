@@ -14,14 +14,19 @@ on: push
 
 jobs:
   #every step is a seperate action 
-  validation:
-    #Defines the name of the check-bats-version job stored within the jobs section. 
-    check-bats-version:
+  validation: 
     runs-on: ubuntu-latest
-      
-      steps:
-        #Checks out a copy of your repository on the ubuntu-latest machine
-        
-          uses: actions/checkout@v2
-          run: ci/validate-formula.sh
+    steps:
+      #Checks out a copy of your repository on the ubuntu-latest machine
+      uses: actions/checkout@v2
+      run:  cd ci/
+      run: ./validate-formula.sh
 
+  delivery: 
+    needs: validation
+
+
+
+  submit:
+    needs: [validation, delivery]  
+    #need: job  requires the other one to pass the ci process
