@@ -1,0 +1,27 @@
+name: formula_ci
+
+description: "Moving the formula from travis to Github Actions"
+# this is my workflow for the formula
+
+# The Ci automaticaly publishes new releases every time a pull request is merged into master
+#on:
+#  push:
+#    branches:
+#      - master
+
+# TESTING
+on: push
+
+jobs:
+  #every step is a seperate action 
+  validation:
+    #Defines the name of the check-bats-version job stored within the jobs section. 
+    check-bats-version:
+    runs-on: ubuntu-latest
+      
+      steps:
+        # Checks out a copy of your repository on the ubuntu-latest machine
+      - name: Checkout code
+        uses: actions/checkout@v2
+        run: ci/validate-formula.sh
+
