@@ -27,7 +27,22 @@ jobs:
     needs: validation
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+     env:
+        - FOLDER=/package
+        - PACKAGE_NAME=saphanabootstrap-formula
+         - uses: actions/checkout@master
+          - run: | 
+            sudo docker pull shap/continuous_deliver:latest
+            docker run -t -v "$(pwd):/package" -w /package \
+            -e OBS_USER -e OBS_PASS -e FOLDER -e OBS_PROJECT -e PACKAGE_NAME \
+            shap/continuous_deliver \
+            /bin/bash -c "sed -i 's~%%VERSION%%~$TRAVIS_COMMIT~' _service && \
+            sed -i 's~%%REPOSITORY%%~$TRAVIS_REPO_SLUG~' _service && \
+            /scripts/upload.sh"
+
+
+
+
 
   submit:
     needs: [validation, delivery]
