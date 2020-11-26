@@ -5,11 +5,11 @@ description: "Moving the formula from travis to Github Actions"
 
 # The Ci automaticaly publishes new releases every time a pull request is merged into master
 #on:
-#  push:
-#    branches:
-#      - master
+#push:
+#branches:
+#- master
 
-# TESTING
+#TESTING
 on: push
 
 jobs:
@@ -20,8 +20,8 @@ jobs:
     runs-on: ubuntu-latest
       
       steps:
-        # Checks out a copy of your repository on the ubuntu-latest machine
-      - name: Checkout code
-        uses: actions/checkout@v2
-        run: ci/validate-formula.sh
+        #Checks out a copy of your repository on the ubuntu-latest machine
+        - name: Checkout code
+          uses: actions/checkout@v2
+          run: ci/validate-formula.sh
 
