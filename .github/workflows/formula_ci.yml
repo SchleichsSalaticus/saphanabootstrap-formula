@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@master
       - run: |
           sudo docker pull shap/continuous_deliver:latest
           docker run -t -v "$(pwd):/package" -w /package \
