@@ -46,6 +46,8 @@ jobs:
         env:
           FOLDER: package
           PACKAGE_NAME: saphanabootstrap-formula
+          OBS_USER: ${{ secrets.OBS_USER }}
+          OBS_PASS: ${{ secrets.OBS_PASS }}
 
   submit:
     needs: [validation, delivery]
