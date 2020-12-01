@@ -3,7 +3,7 @@ name: formula_ci
 #description: "Moving the formula from travis to Github Actions"
 # this is my workflow for the formula
 
-# The CI automaticaly publishes new releases every time a pull request is merged into master
+# The CI automatically publishes new releases every time a pull request is merged into master
 #on:
 #push:
 #branches:
@@ -13,7 +13,7 @@ name: formula_ci
 on: push
 
 jobs:
-  #every step is a seperate action
+  #every step is a separate action
   validation:
     runs-on: ubuntu-latest
     steps:
@@ -53,3 +53,6 @@ jobs:
     #need: job  requires the other one to pass the ci process
     steps:
       - uses: actions/checkout@master
+
+    env:
+      PACKAGE_NAME: saphanabootstrap-formula
