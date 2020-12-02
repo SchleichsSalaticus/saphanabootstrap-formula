@@ -36,11 +36,11 @@ jobs:
       steps:
         - uses: actions/checkout@v2
         - name: configure OSC
-      run: |
-        docker run -t -v "$(pwd):/package" -w /package -e $OBS_USER -e $OBS_PASS -e $FOLDER -e $OBS_PROJECT -e $PACKAGE_NAME 
-        shap/continuous_deliver/bin/bash -c "sed -i 's~%%VERSION%%~$TRAVIS_COMMIT~' _service && 
-        sed -i 's~%%REPOSITORY%%~$TRAVIS_REPO_SLUG~' _service && 
-        /scripts/upload.sh"
+          run: |
+            docker run -t -v "$(pwd):/package" -w /package -e $OBS_USER -e $OBS_PASS -e $FOLDER -e $OBS_PROJECT -e $PACKAGE_NAME 
+            shap/continuous_deliver/bin/bash -c "sed -i 's~%%VERSION%%~$TRAVIS_COMMIT~' _service && 
+            sed -i 's~%%REPOSITORY%%~$TRAVIS_REPO_SLUG~' _service && 
+            /scripts/upload.sh"
   submit:
     needs: [validation, delivery]
     runs-on: ubuntu-latest
