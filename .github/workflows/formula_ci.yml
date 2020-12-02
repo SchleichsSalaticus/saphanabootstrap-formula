@@ -36,11 +36,9 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - run: |
-
-
-          shap/continuous_deliver/bin/bash -c "sed -i 's~%%VERSION%%~$TRAVIS_COMMIT~' _service && 
-          sed -i 's~%%REPOSITORY%%~$TRAVIS_REPO_SLUG~' _service && 
+          sed -i 's~%%REPOSITORY%%~$GITHUBACTIONS_REPO_SLUG~' _service && 
           /scripts/upload.sh"
+          /package;/scripts/submit.sh
   submit:
     needs: [validation, delivery]
     runs-on: ubuntu-latest
