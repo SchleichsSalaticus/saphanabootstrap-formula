@@ -27,12 +27,12 @@ jobs:
     needs: validation
     runs-on: ubuntu-latest
     container: shap/continuous_deliver
-        env:
-          FOLDER: package
-          PACKAGE_NAME: saphanabootstrap-formula
-          OBS_USER: ${{ secrets.OBS_USER }}
-          OBS_PASS: ${{ secrets.OBS_PASS }}
-          OBS_PROJECT: ${{ secrets.OBS_PROJECT }}
+    env:
+      FOLDER: package
+      PACKAGE_NAME: saphanabootstrap-formula
+      OBS_USER: ${{ secrets.OBS_USER }}
+      OBS_PASS: ${{ secrets.OBS_PASS }}
+      OBS_PROJECT: ${{ secrets.OBS_PROJECT }}
 
   submit:
     needs: [validation, delivery]
