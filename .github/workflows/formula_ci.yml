@@ -34,8 +34,7 @@ jobs:
       OBS_PASS: ${{ secrets.OBS_PASS }}
       OBS_PROJECT: ${{ secrets.OBS_PROJECT }}
       steps:
-        - uses: actions/checkout@v2
-        - name: configure OSC
+        - uses: actions/checkout@master
           run: |
             docker run -t -v "$(pwd):/package" -w /package -e $OBS_USER -e $OBS_PASS -e $FOLDER -e $OBS_PROJECT -e $PACKAGE_NAME 
             shap/continuous_deliver/bin/bash -c "sed -i 's~%%VERSION%%~$TRAVIS_COMMIT~' _service && 
