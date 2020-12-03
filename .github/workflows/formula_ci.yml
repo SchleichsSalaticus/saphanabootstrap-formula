@@ -1,8 +1,5 @@
 name: formula_ci
-
-# description: "Moving saphanabootstrap-formula from Travis to Github Actions"
-#
-
+# Description: "Moving saphanabootstrap-formula from Travis to Github Actions"
 # The CI automatically publishes new releases every time a pull request is merged into master
 on:
   push:
