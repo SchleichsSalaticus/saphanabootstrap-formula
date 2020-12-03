@@ -36,7 +36,8 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - run: |
-          sudo apt install sed
+          sudo apt-get update -y
+          sudo apt-get install -y sed
           /bin/bash -c "sed -i 's~%%VERSION%%~$GITHUB_COMMIT~' _service
           sed -i 's~%%REPOSITORY%%~$GITHUB_REPO_SLUG~' _service 
           /scripts/upload.sh"
