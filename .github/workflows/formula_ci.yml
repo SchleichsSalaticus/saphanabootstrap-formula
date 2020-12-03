@@ -36,9 +36,9 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - run: |
-          sed -i 's~%%REPOSITORY%%~$GITHUBACTIONS_REPO_SLUG~' _service && 
+          /bin/bash -c "sed -i 's~%%VERSION%%~$GITHUB_COMMIT~' _service
+          sed -i 's~%%REPOSITORY%%~$GITHUB_REPO_SLUG~' _service 
           /scripts/upload.sh"
-          /package;/scripts/submit.sh
   submit:
     needs: [validation, delivery]
     runs-on: ubuntu-latest
