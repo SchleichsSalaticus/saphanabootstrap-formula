@@ -1,7 +1,7 @@
 name: formula_ci
 
-#description: "Moving the formula from travis to Github Actions"
-# this is my workflow for the formula
+# description: "Moving saphanabootstrap-formula from Travis to Github Actions"
+#
 
 # The CI automatically publishes new releases every time a pull request is merged into master
 on:
@@ -13,11 +13,9 @@ on:
 #on: push
 
 jobs:
-  #every step is a separate action
   validation:
     runs-on: ubuntu-latest
     steps:
-      #Checks out a copy of your repository on the ubuntu-latest machine
       - uses: actions/checkout@master
       - run: |
           sudo apt-get install salt-api
@@ -37,6 +35,7 @@ jobs:
       - uses: actions/checkout@master
       - run: |
           sudo /bin/bash -c "sed -i 's~%%VERSION%%~$GITHUB_COMMIT~' _service && sed -i 's~%%REPOSITORY%%~$GITHUB_REPO_SLUG~' _service /scripts/upload.sh"
+
   submit:
     needs: [validation, delivery]
     runs-on: ubuntu-latest
