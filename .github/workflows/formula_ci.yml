@@ -5,9 +5,9 @@ name: formula_ci
 
 # The CI automatically publishes new releases every time a pull request is merged into master
 on:
-push:
-branches:
-  - master
+  push:
+    branches:
+      - master
 
 #TESTING
 #on: push
