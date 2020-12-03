@@ -46,6 +46,8 @@ jobs:
       OBS_USER: ${{ secrets.OBS_USER }}
       OBS_PASS: ${{ secrets.OBS_PASS }}
       OBS_PROJECT: ${{ secrets.OBS_PROJECT }}
+      TARGET_PROJECT:
     steps:
       - uses: actions/checkout@master
+      - run: |
           sudo /scripts/submit.sh
