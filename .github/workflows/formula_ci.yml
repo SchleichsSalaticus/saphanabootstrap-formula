@@ -40,9 +40,13 @@ jobs:
   submit:
     needs: [validation, delivery]
     runs-on: ubuntu-latest
-    #need: job  requires the other one to pass the ci process
+    container: shap/continuous_deliver
+    env:
+    FOLDER: package
+    PACKAGE_NAME: saphanabootstrap-formula
+    OBS_USER: ${{ secrets.OBS_USER }}
+    OBS_PASS: ${{ secrets.OBS_PASS }}
+    OBS_PROJECT: ${{ secrets.OBS_PROJECT }}
     steps:
       - uses: actions/checkout@master
-
-    env:
-      PACKAGE_NAME: saphanabootstrap-formula
+          sudo /scripts/submit.sh
