@@ -43,6 +43,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: sudo /scripts/submit.sh
+
     env:
       PACKAGE_NAME: saphanabootstrap-formula
       OBS_USER: ${{ secrets.OBS_USER }}
@@ -52,3 +53,4 @@ jobs:
       REPOSITORY: ${{ github.repository }}
       TARGET_PROJECT: ${{ secrets.OBS_DOWNSTREAM_PROJECT }}
       GITHUB_OAUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#submit scriptdoesthave a target project , needs to be fixed
