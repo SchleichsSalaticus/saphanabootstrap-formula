@@ -13,7 +13,7 @@ jobs:
   validation:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - run: sudo apt-get install salt-api
       - run: ci/validate-formula.sh
 
@@ -31,7 +31,7 @@ jobs:
       REPOSITORY: ${{ github.repository }}
 
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - run: |
           sudo /bin/bash -c "sed -i 's~%%VERSION%%~$GITHUB_COMMIT~' _service && sed -i 's~%%REPOSITORY%%~$GITHUB_REPO_SLUG~' _service /scripts/upload.sh"
 
@@ -48,6 +48,6 @@ jobs:
       REPOSITORY: ${{ github.repository }}
 
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - run: |
           sudo /scripts/submit.sh
