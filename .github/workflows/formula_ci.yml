@@ -28,7 +28,7 @@ jobs:
       OBS_PASS: ${{ secrets.OBS_PASS }}
       OBS_PROJECT: ${{ secrets.OBS_PROJECT }}
       REVISION: ${{ github.sha }}
-      REPOSITORY: ${{ home:Servus007:saphanabootstrap-formula-delivery-step }}
+      REPOSITORY: ${{home:Servus007:saphanabootstrap-formula-delivery-step}}
 
     steps:
       - uses: actions/checkout@v2
@@ -45,8 +45,8 @@ jobs:
       OBS_PASS: ${{ secrets.OBS_PASS }}
       OBS_PROJECT: ${{ secrets.OBS_PROJECT }}
       REVISION: ${{ github.event.release.tag_name }}
-      REPOSITORY: ${{ home:Servus007:saphanabootstrap-formula-delivery-step  }}
-
+      REPOSITORY: ${{ github.repository }}
+      TARGET_PROJECT: ${{ secrets.OBS_DOWNSTREAM_PROJECT }}
     steps:
       - uses: actions/checkout@v2
       - run: |
