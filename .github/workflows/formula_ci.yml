@@ -28,7 +28,7 @@ jobs:
       OBS_PASS: ${{ secrets.OBS_PASS }}
       OBS_PROJECT: ${{ secrets.OBS_PROJECT }}
       REVISION: ${{ github.sha }}
-      REPOSITORY: ${{ github.repository }}
+      REPOSITORY: ${{ saphanabootstrap-formula-delivery-step }}
 
     steps:
       - uses: actions/checkout@v2
@@ -45,7 +45,7 @@ jobs:
       OBS_PASS: ${{ secrets.OBS_PASS }}
       OBS_PROJECT: ${{ secrets.OBS_PROJECT }}
       REVISION: ${{ github.event.release.tag_name }}
-      REPOSITORY: ${{ github.repository }}
+      REPOSITORY: ${{ saphanabootstrap-formula-testing-two-submit  }}
 
     steps:
       - uses: actions/checkout@v2
