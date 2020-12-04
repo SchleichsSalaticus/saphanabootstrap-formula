@@ -14,9 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - run: |
-          sudo apt-get install salt-api
-          ci/validate-formula.sh
+      - run: sudo apt-get install salt-api
+      - run: ci/validate-formula.sh
 
   delivery:
     needs: validation
@@ -28,6 +27,9 @@ jobs:
       OBS_USER: ${{ secrets.OBS_USER }}
       OBS_PASS: ${{ secrets.OBS_PASS }}
       OBS_PROJECT: ${{ secrets.OBS_PROJECT }}
+      REVISION: ${{ github.sha }}
+      REPOSITORY: ${{ github.repository }}
+
     steps:
       - uses: actions/checkout@master
       - run: |
@@ -42,7 +44,9 @@ jobs:
       OBS_USER: ${{ secrets.OBS_USER }}
       OBS_PASS: ${{ secrets.OBS_PASS }}
       OBS_PROJECT: ${{ secrets.OBS_PROJECT }}
-      TARGET_PROJECT:
+      REVISION: ${{ github.event.release.tag_name }}
+      REPOSITORY: ${{ github.repository }}
+
     steps:
       - uses: actions/checkout@master
       - run: |
