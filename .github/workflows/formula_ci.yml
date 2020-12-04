@@ -29,6 +29,7 @@ jobs:
       OBS_PROJECT: ${{ secrets.OBS_PROJECT }}
       REVISION: ${{ github.sha }}
       REPOSITORY: ${{ github.repository }}
+      GITHUB_OAUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - uses: actions/checkout@v2
@@ -47,6 +48,7 @@ jobs:
       REVISION: ${{ github.event.release.tag_name }}
       REPOSITORY: ${{ github.repository }}
       TARGET_PROJECT: ${{ secrets.OBS_DOWNSTREAM_PROJECT }}
+      GITHUB_OAUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - run: |
