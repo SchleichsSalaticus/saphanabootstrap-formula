@@ -51,7 +51,7 @@ jobs:
       OBS_PROJECT: ${{ secrets.OBS_PROJECT }}
       REVISION: ${{ github.event.release.tag_name }}
       REPOSITORY: ${{ github.repository }}
-      TARGET_PROJECT: $home:Servus007:saphanabootstrap-formula-delivery-step:saphanabootstrap-formula-submit-step
+      TARGET_PROJECT: home:Servus007:saphanabootstrap-formula-delivery-step:saphanabootstrap-formula-submit-step
       GITHUB_OAUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #submit script doesnt have a target project , needs to be fixed
 #just a test commit , watch if ci is started :D
