@@ -53,4 +53,5 @@ jobs:
       REPOSITORY: ${{ github.repository }}
       TARGET_PROJECT: ${{ secrets.OBS_DOWNSTREAM_PROJECT }}
       GITHUB_OAUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#submit scriptdoesthave a target project , needs to be fixed
+#submit script doesnt have a target project , needs to be fixed
+#just a test commit , watch if ci is started :D
