@@ -55,3 +55,4 @@ jobs:
       GITHUB_OAUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #submit script doesnt have a target project , needs to be fixed
 #just a test commit , watch if ci is started :D
+# Problem with the submit script TARGET_PROJECT not set. Skipping package submission.
