@@ -59,10 +59,7 @@ jobs:
           /scripts/init_osc_creds.sh
           mkdir -p $HOME/.config/osc
           cp /root/.config/osc/oscrc $HOME/.config/osc
-      - run: exporter-obs-workdir
-      - run: exporter-obs-changelog
-      - run: exporter-obs-commit
-      - run: /scripts/submit.sh
+         /scripts/submit.sh
 #submit script doesnt have a target project , needs to be fixed
 #just a test commit , watch if ci is started :D
 # Problem with the submit script TARGET_PROJECT not set. Skipping package submission.
