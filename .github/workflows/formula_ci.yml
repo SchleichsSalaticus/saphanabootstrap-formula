@@ -44,7 +44,7 @@ jobs:
       PACKAGE_NAME: saphanabootstrap-formula
       OBS_USER: ${{ secrets.OBS_USER }}
       OBS_PASS: ${{ secrets.OBS_PASS }}
-      OBS_PROJECT: ${{ secrets.OBS_PROJECT }}
+      OBS_PROJECT: home:Servus007:saphanabootstrap-formula-delivery-step
       REVISION: ${{ github.event.release.tag_name }}
       REPOSITORY: ${{ github.repository }}
       TARGET_PROJECT: home:Servus007:saphanabootstrap-formula-delivery-step:saphanabootstrap-formula-submit-step
