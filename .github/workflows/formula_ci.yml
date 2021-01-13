@@ -47,7 +47,7 @@ jobs:
       OBS_PROJECT: ${{ secrets.OBS_PROJECT }}
       REVISION: ${{ github.event.release.tag_name }}
       REPOSITORY: ${{ github.repository }}
-      TARGET_PROJECT: https://build.opensuse.org/project/show/home:Servus007:saphanabootstrap-formula-delivery-step:saphanabootstrap-formula-submit-step
+      TARGET_PROJECT: home:Servus007:saphanabootstrap-formula-delivery-step:saphanabootstrap-formula-submit-step
       GITHUB_OAUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
