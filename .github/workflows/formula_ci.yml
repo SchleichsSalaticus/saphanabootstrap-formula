@@ -58,8 +58,8 @@ jobs:
           /scripts/init_osc_creds.sh
           mkdir -p $HOME/.config/osc
           cp /root/.config/osc/oscrc $HOME/.config/osc
-          exporter-obs-workdir
+          make exporter-obs-workdir
           make exporter-obs-changelog
           make exporter-obs-commit
           ./scripts/submit.sh
-          echo "Finishedsubmbit"
+          echo "Finished submbit"
