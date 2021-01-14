@@ -54,8 +54,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+        run: |
+        /scripts/init_osc_creds.sh
+        mkdir -p $HOME/.config/osc
+        cp /root/.config/osc/oscrc $HOME/.config/osc
+      - run: make exporter-obs-workdir
+      - run: make exporter-obs-changelog
+      - run: make exporter-obs-commit
       - run: /scripts/submit.sh
-#submit script doesnt have a target project , needs to be fixed
-#just a test commit , watch if ci is started :D
-# Problem with the submit script TARGET_PROJECT not set. Skipping package submission.
-#test push
