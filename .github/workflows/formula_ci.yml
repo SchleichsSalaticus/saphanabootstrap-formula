@@ -20,19 +20,23 @@ jobs:
   delivery:
     needs: validation
     runs-on: ubuntu-latest
-    container: shap/continuous_deliver
-    env:
-      FOLDER: package
-      PACKAGE_NAME: saphanabootstrap-formula
-      OBS_USER: ${{ secrets.OBS_USER }}
-      OBS_PASS: ${{ secrets.OBS_PASS }}
-      OBS_PROJECT: home:Servus007:saphanabootstrap-formula-delivery-step
-      REVISION: ${{ github.sha }}
-      REPOSITORY: ${{ github.repository }}
-      GITHUB_OAUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    container: 
+      image: shap/continuous_deliver
+      env:
+        FOLDER: package
+        PACKAGE_NAME: saphanabootstrap-formula
+        OBS_USER: ${{ secrets.OBS_USER }}
+        OBS_PASS: ${{ secrets.OBS_PASS }}
+        OBS_PROJECT: home:Servus007:saphanabootstrap-formula-delivery-step
+        REVISION: ${{ github.sha }}
+        REPOSITORY: ${{ github.repository }}
+        GITHUB_OAUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      volumes:
+        - $(pwd):/package
 
     steps:
       - uses: actions/checkout@v2
+      - working-directory: /package
       - run: |
           sed -i 's~%%VERSION%%~$REVISION~' _service 
           sed -i 's~%%REPOSITORY%%~$REPOSITORY~' _service
