@@ -55,11 +55,5 @@ jobs:
         with:
           fetch-depth: 0
       -  run: |
-          /scripts/init_osc_creds.sh
-          mkdir -p $HOME/.config/osc
-          cp /root/.config/osc/oscrc $HOME/.config/osc
-          make exporter-obs-workdir
-          make exporter-obs-changelog
-          make exporter-obs-commit
           ./scripts/submit.sh
           echo "Finished submbit"
