@@ -34,9 +34,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-        /bin/bash -c "sed -i 's~%%VERSION%%~$REVISION~' _service && \
-        sed -i 's~%%REPOSITORY%%~$REPOSITORY~' _service && \
-        /scripts/upload.sh"
+          sed -i 's~%%VERSION%%~$REVISION~' _service 
+          sed -i 's~%%REPOSITORY%%~$REPOSITORY~' _service
+          /scripts/upload.sh"
 
   submit:
     needs: [validation, delivery]
