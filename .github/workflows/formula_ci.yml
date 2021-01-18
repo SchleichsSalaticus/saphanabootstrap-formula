@@ -20,6 +20,10 @@ jobs:
   delivery:
     needs: validation
     runs-on: ubuntu-latest
+
+
+    
+      
     container: 
       image: shap/continuous_deliver
       env:
@@ -37,10 +41,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          sed -i 's~%%VERSION%%~$REVISION~' _service 
-          sed -i 's~%%REPOSITORY%%~$REPOSITORY~' _service
-          /scripts/upload.sh
+          docker pull shap/continuous_deliver:latest
+          sed -i 's~%%VERSION%%~$REVISION~' _service && sed -i 's~%%REPOSITORY%%~$REPOSITORY~' _service && /scripts/upload.sh
         working-directory: /package
+        shell: bash
 
 
 
