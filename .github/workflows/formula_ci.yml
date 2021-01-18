@@ -21,9 +21,6 @@ jobs:
     needs: validation
     runs-on: ubuntu-latest
 
-
-    
-      
     container: 
       image: shap/continuous_deliver
       env:
@@ -36,7 +33,7 @@ jobs:
         REPOSITORY: ${{ github.repository }}
         GITHUB_OAUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       volumes:
-        - $(pwd):/package
+        - sudo $(pwd):/package
 
     steps:
       - uses: actions/checkout@v2
