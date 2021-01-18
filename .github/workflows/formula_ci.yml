@@ -33,7 +33,7 @@ jobs:
         REPOSITORY: ${{ github.repository }}
         GITHUB_OAUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       volumes:
-        - shap/continuous_deliver:/package
+        -  $PWD:/package
 
     steps:
       - uses: actions/checkout@v2
