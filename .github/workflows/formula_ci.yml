@@ -32,16 +32,15 @@ jobs:
         REVISION: ${{ github.sha }}
         REPOSITORY: ${{ github.repository }}
         GITHUB_OAUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      volumes:
-        -  "$(pwd):/package"
-
+     
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          docker pull shap/continuous_deliver:latest
-          sed -i 's~%%VERSION%%~$REVISION~' _service && sed -i 's~%%REPOSITORY%%~$REPOSITORY~' _service && /scripts/upload.sh
-        working-directory: /package
+      - run:  sed -i 's~%%VERSION%%~$REVISION~' _service 
         shell: bash
+      - run:  sed -i 's~%%REPOSITORY%%~$REPOSITORY~' _service 
+        shell: bash
+      - run:  /scripts/upload.sh
+        
 
 
 
