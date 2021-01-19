@@ -38,6 +38,8 @@ jobs:
       - run:  sed -i 's~%%VERSION%%~$REVISION~' _service 
       - run:  sed -i 's~%%REPOSITORY%%~$REPOSITORY~' _service 
       - run:  mkdir -p /github/home/.config/osc/oscrc
+      - run:  ls -all /github/home/.config/osc/oscrc
+      - run:  chmod 755 /github/home/.config/osc/oscrc
       - run:  cp /root/.config/osc/oscrc $OSCRC_FILE
       - run:  /scripts/upload.sh
         
