@@ -32,9 +32,11 @@ jobs:
         REPOSITORY: ${{ github.repository }}
         GITHUB_OAUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         OSCRC_FILE: /github/home/.config/osc/oscrc
+
     steps:
       - uses: actions/checkout@v2
       - run:  sudo pwd
+      - run:  echo $OSCRC_FILE
       - run:  sed -i 's~%%VERSION%%~$REVISION~' _service 
       - run:  sed -i 's~%%REPOSITORY%%~$REPOSITORY~' _service 
       - run:  mkdir -p $OSCRC_FILE
