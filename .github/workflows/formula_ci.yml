@@ -39,7 +39,7 @@ jobs:
       - run:  echo $OSCRC_FILE
       - run:  mkdir -p $OSCRC_FILE 
       - run:  touch  $OSCRC_FILE/oscrc.txt
-      - run:  ls -all $OSCRC_FILE/
+      - run:  pwd && ls -all $OSCRC_FILE
       - run:  cp /root/.config/osc/oscrc $(OSCRC_FILE)oscrc.txt
       - run:  pwd;ls -all 
       - run:  sed -i 's~%%VERSION%%~$REVISION~' _service 
