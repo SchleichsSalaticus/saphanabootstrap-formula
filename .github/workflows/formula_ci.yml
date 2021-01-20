@@ -42,6 +42,7 @@ jobs:
       - run:  pwd && ls -all $OSCRC_FILE
       - run:  cp /root/.config/osc/oscrc "$OSCRC_FILE"oscrc.txt
       - run:  pwd;ls -all 
+      - run:  cat "$OSCRC_FILE"oscrc.txt
       - run:  sed -i 's~%%VERSION%%~$REVISION~' _service 
       - run:  sed -i 's~%%REPOSITORY%%~$REPOSITORY~' _service 
       - run:  pwd;ls -all
