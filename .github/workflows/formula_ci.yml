@@ -38,7 +38,7 @@ jobs:
       - run:  sudo pwd
       - run:  echo $OSCRC_FILE
       - run:  mkdir -p $OSCRC_FILE 
-      - run:  touch  $OSCRC_FILE/oscrc.txt
+      - run:  touch  $(OSCRC_FILE)/oscrc.txt
       - run:  pwd && ls -all $OSCRC_FILE
       - run:  cp /root/.config/osc/oscrc $(OSCRC_FILE)oscrc.txt
       - run:  pwd;ls -all 
