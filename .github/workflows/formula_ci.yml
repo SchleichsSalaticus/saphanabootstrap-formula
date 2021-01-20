@@ -31,18 +31,19 @@ jobs:
         REVISION: ${{ github.sha }}
         REPOSITORY: ${{ github.repository }}
         GITHUB_OAUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        OSCRC_FILE: /github/home/.config/osc/oscrc.txt
+        OSCRC_FILE: /github/home/.config/osc/oscrc
 
     steps:
       - uses: actions/checkout@v2
       - run:  sudo pwd
       - run:  echo $OSCRC_FILE
       - run:  mkdir -p $OSCRC_FILE 
+      - run:  mkdir -p "$OSCRC_FILE"test.txt 
       - run:  pwd && ls -all $OSCRC_FILE
-      - run:  cat $OSCRC_FILE
-      - run:  cp /root/.config/osc/oscrc "$OSCRC_FILE"
+      - run:  cat "$OSCRC_FILE"test.txt
+      - run:  cp /root/.config/osc/oscrc "$OSCRC_FILE"test.txt
       - run:  pwd;ls -all 
-      - run:  cat "$OSCRC_FILE"
+      - run:  cat "$OSCRC_FILE"test.txt
       - run:  sed -i 's~%%VERSION%%~$REVISION~' _service 
       - run:  sed -i 's~%%REPOSITORY%%~$REPOSITORY~' _service 
       - run:  pwd;ls -all
