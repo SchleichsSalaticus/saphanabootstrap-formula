@@ -44,6 +44,8 @@ jobs:
       - run:  cd $OSCRC_FILE
       - run:  pwd;ls -all 
       - run:  chmod -R 755 $OSCRC_FILE
+      - run:  mkdir $(test $OSCRC_FILE)
+      - run:  pwd;ls -all 
       - run:  cp /root/.config/osc/oscrc $OSCRC_FILE
       - run:  pwd;ls -all 
       - run:  /scripts/upload.sh
