@@ -40,7 +40,6 @@ jobs:
       - run:  sudo pwd
       - run:  echo $OSCRC_FILE
       - run:  dirname $OSCRC_FILE
-      - run:  pwd && ls -all $OSCRC_FILE
       - run:  file $OSCRC_FILE
       - run:  sed -i 's~%%VERSION%%~$REVISION~' _service 
       - run:  sed -i 's~%%REPOSITORY%%~$REPOSITORY~' _service 
