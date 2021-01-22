@@ -39,16 +39,9 @@ jobs:
       - uses: actions/checkout@v2
       - run:  sudo pwd
       - run:  echo $OSCRC_FILE
-      - run:  mkdir -p "$OSCRC_FILE"
+      - run:  dirname $OSCRC_FILE
       - run:  pwd && ls -all $OSCRC_FILE
-      - run:  touch "$OSCRC_FILE"/test.txt
-      - run:  cat "$OSCRC_FILE"/test.txt
-      - run:  cp /root/.config/osc/oscrc "$OSCRC_FILE"/test.txt
-      - run:  pwd;ls -all 
-      - run:  cat "$OSCRC_FILE"/test.txt
-      - run:  ls -all _service
       - run:  file $OSCRC_FILE
-      - run:  file $OSCRC_FILE/test.txt
       - run:  sed -i 's~%%VERSION%%~$REVISION~' _service 
       - run:  sed -i 's~%%REPOSITORY%%~$REPOSITORY~' _service 
       - run:  pwd;ls -all
