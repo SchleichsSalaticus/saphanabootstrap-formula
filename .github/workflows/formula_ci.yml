@@ -25,13 +25,11 @@ jobs:
     - name: validation script
     -  run: ci/validate-formula.sh
 
-#validationfinished        
-##################################################################################################################
- 
+
   delivery:
     needs: validation
     runs-on: ubuntu-latest
-#   if: ${{ github.event_name != 'pull_request' }}  
+    #if: ${{ github.event_name != 'pull_request' }}  
     container: 
       image: shap/continuous_deliver
       env:
@@ -60,9 +58,6 @@ jobs:
     -  run:  sed -i 's~%%REPOSITORY%%~${{ github.repository }}~' _service && \
     -  run:  /scripts/upload.sh 
       
-#delivery finished        
-##################################################################################################################
-
 
   submit:
     needs: [validation, delivery]
