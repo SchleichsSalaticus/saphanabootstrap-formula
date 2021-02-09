@@ -1,6 +1,6 @@
+name: Formula CI
 # Description: "Moving saphanabootstrap-formula from Travis to Github Actions"
 # The CI automatically publishes new releases every time a pull request is merged into master
-name: Formula CI
 on: [push, pull_request]
 env:
   PACKAGE_NAME: saphanabootstrap-formula
