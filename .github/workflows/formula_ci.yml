@@ -21,9 +21,9 @@ jobs:
         key-server: http://repo.saltstack.com/apt/ubuntu/18.04/amd64/2019.2/SALTSTACK-GPG-KEY.pub
   
     - name: install salt
-      run: sudo apt-get install salt-common
+    -  run: sudo apt-get install salt-common
     - name: validation script
-      run: ci/validate-formula.sh
+    -  run: ci/validate-formula.sh
 
 #validationfinished        
 ##################################################################################################################
