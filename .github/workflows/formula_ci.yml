@@ -1,11 +1,13 @@
-name: formula_ci
 # Description: "Moving saphanabootstrap-formula from Travis to Github Actions"
 # The CI automatically publishes new releases every time a pull request is merged into master
+name: formula_ci
 on:
   push:
     branches:
       - master
 
+env:
+  PACKAGE_NAME: habootstrap-formula
 #TESTING
 #on: push
 
@@ -14,13 +16,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: sudo apt-get install salt-api
+        with:
+          fetch-depth: 0
+      -  name: Add salt repository
+      - uses: myci-actions/add-deb-repo@4
+        with:
+          repo: deb http://repo.saltstack.com/apt/ubuntu/18.04/amd64/2019.2/ bionic main
+          key-server: http://repo.saltstack.com/apt/ubuntu/18.04/amd64/2019.2/SALTSTACK-GPG-KEY.pub
+      - name: install salt
+      - run: sudo apt-get install salt-common
       - run: ci/validate-formula.sh
 
   delivery:
     needs: validation
     runs-on: ubuntu-latest
-
     container: 
       image: shap/continuous_deliver
       env:
@@ -37,12 +46,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run:  sudo pwd
-      - run:  echo $OSCRC_FILE
-      - run:  dirname $OSCRC_FILE
-      - run:  sed -i 's~%%VERSION%%~$REVISION~' _service 
-      - run:  sed -i 's~%%REPOSITORY%%~$REPOSITORY~' _service 
-      - run:  /scripts/upload.sh
+        with:
+          fetch-depth: 0
+      - name: configure OSC   
+      - run:  /scripts/init_osc_creds.sh
+      - run:  cp /root/.config/osc/oscrc $HOME/.config/osc
+      - name: deliver package
+      - run:  sed -i 's~%%VERSION%%~${{ github.sha }}~' _service && \
+      - run:  sed -i 's~%%REPOSITORY%%~${{ github.repository }}~' _service && \
+      - run:  /scripts/upload.sh 
+      
         
 
 
