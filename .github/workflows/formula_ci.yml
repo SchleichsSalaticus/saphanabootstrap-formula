@@ -67,7 +67,7 @@ jobs:
         OBS_USER: ${{ secrets.OBS_USER }}
         OBS_PASS: ${{ secrets.OBS_PASS }}
         OBS_PROJECT: ${{ secrets.OBS_PROJECT }}
-        OBS_DOWNSTREAM_PROJECT: ${{ secrets.TARGET_PROJECT }}
+        TARGET_PROJECT: ${{ secrets.OBS_DOWNSTREAM_PROJECT }}
 
     steps:
     - uses: actions/checkout@v2
