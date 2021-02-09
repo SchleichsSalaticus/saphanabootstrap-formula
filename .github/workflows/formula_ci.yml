@@ -1,15 +1,10 @@
 # Description: "Moving saphanabootstrap-formula from Travis to Github Actions"
 # The CI automatically publishes new releases every time a pull request is merged into master
-name: formula_ci
-on:
-  push:
-    branches:
-      - master
-
+name: Formula CI
+on: [push, pull_request]
 env:
   PACKAGE_NAME: saphanabootstrap-formula
-#TESTING
-#on: push
+
 
 jobs:
   validation:
@@ -18,18 +13,25 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+ 
       - name: Add salt repository
       - uses: myci-actions/add-deb-repo@4
         with:
           repo: deb http://repo.saltstack.com/apt/ubuntu/18.04/amd64/2019.2/ bionic main
           key-server: http://repo.saltstack.com/apt/ubuntu/18.04/amd64/2019.2/SALTSTACK-GPG-KEY.pub
+   
       - name: install salt
       - run: sudo apt-get install salt-common
+      - name: validation script
       - run: ci/validate-formula.sh
 
+#validationfinished        
+##################################################################################################################
+ 
   delivery:
     needs: validation
     runs-on: ubuntu-latest
+#   if: ${{ github.event_name != 'pull_request' }}  
     container: 
       image: shap/continuous_deliver
       env:
@@ -41,39 +43,42 @@ jobs:
         GITHUB_OAUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         OSCRC_FILE: /github/home/.config/osc/oscrc
         FOLDER: /package
-        PACKAGE_NAME: saphanabootstrap-formula
-        
-
+        PACKAGE_NAME: saphanabootstrap-formula  
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2 
         with:
           fetch-depth: 0
+# OSC credentials must be configured beforehand as the HOME variables cannot be changed from /github/home
+# that is used to run osc commands                
       - name: configure OSC   
       - run:  /scripts/init_osc_creds.sh
+      - run:  mkdir -p $HOME/.config/osc
       - run:  cp /root/.config/osc/oscrc $HOME/.config/osc
+
       - name: deliver package
       - run:  sed -i 's~%%VERSION%%~${{ github.sha }}~' _service && \
       - run:  sed -i 's~%%REPOSITORY%%~${{ github.repository }}~' _service && \
       - run:  /scripts/upload.sh 
       
-        
-
+#delivery finished        
+##################################################################################################################
 
 
   submit:
     needs: [validation, delivery]
     runs-on: ubuntu-latest
-    container: shap/continuous_deliver
-
-    env:
-      PACKAGE_NAME: saphanabootstrap-formula
-      OBS_USER: ${{ secrets.OBS_USER }}
-      OBS_PASS: ${{ secrets.OBS_PASS }}
-      OBS_PROJECT: home:Servus007:saphanabootstrap-formula-delivery-step
-      REVISION: ${{ github.event.release.tag_name }}
-      REPOSITORY: ${{ github.repository }}
-      TARGET_PROJECT: home:Servus007:saphanabootstrap-formula-delivery-step:saphanabootstrap-formula-submit-step
-      GITHUB_OAUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#   if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/master' }}    
+    container:
+      image: shap/continuous_deliver
+      env:
+          PACKAGE_NAME: saphanabootstrap-formula
+          OBS_USER: ${{ secrets.OBS_USER }}
+          OBS_PASS: ${{ secrets.OBS_PASS }}
+          OBS_PROJECT: home:Servus007:saphanabootstrap-formula-delivery-step
+          REVISION: ${{ github.event.release.tag_name }}
+          REPOSITORY: ${{ github.repository }}
+          TARGET_PROJECT: home:Servus007:saphanabootstrap-formula-delivery-step:saphanabootstrap-formula-submit-step
+          GITHUB_OAUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - uses: actions/checkout@v2
