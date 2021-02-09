@@ -48,6 +48,7 @@ jobs:
       run: | 
         /scripts/init_osc_creds.sh
         mkdir -p $HOME/.config/osc
+        mkdir /tmp/osc_project/ && touch saphanabootstrap-formula.spec
         cp /root/.config/osc/oscrc $HOME/.config/osc
 
     - name: deliver package
