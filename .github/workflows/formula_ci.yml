@@ -15,7 +15,7 @@ jobs:
         fetch-depth: 0
 
     - name: Add salt repository
-      uses: myci-actions/add-deb-repo@4
+    - uses: myci-actions/add-deb-repo@4
       with:
         repo: deb http://repo.saltstack.com/apt/ubuntu/18.04/amd64/2019.2/ bionic main
         key-server: http://repo.saltstack.com/apt/ubuntu/18.04/amd64/2019.2/SALTSTACK-GPG-KEY.pub
