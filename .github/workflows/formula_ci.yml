@@ -85,4 +85,4 @@ jobs:
        /scripts/submit.sh
        echo "Finish"
 
-    #test for submit when obs is empty tests
+    #test for submit should work now test for submit
