@@ -10,20 +10,20 @@ jobs:
   validation:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
- 
-      - name: Add salt repository
-      - uses: myci-actions/add-deb-repo@4
-        with:
-          repo: deb http://repo.saltstack.com/apt/ubuntu/18.04/amd64/2019.2/ bionic main
-          key-server: http://repo.saltstack.com/apt/ubuntu/18.04/amd64/2019.2/SALTSTACK-GPG-KEY.pub
-   
-      - name: install salt
-      - run: sudo apt-get install salt-common
-      - name: validation script
-      - run: ci/validate-formula.sh
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Add salt repository
+    - uses: myci-actions/add-deb-repo@4
+      with:
+        repo: deb http://repo.saltstack.com/apt/ubuntu/18.04/amd64/2019.2/ bionic main
+        key-server: http://repo.saltstack.com/apt/ubuntu/18.04/amd64/2019.2/SALTSTACK-GPG-KEY.pub
+  
+    - name: install salt
+    - run: sudo apt-get install salt-common
+    - name: validation script
+    - run: ci/validate-formula.sh
 
 #validationfinished        
 ##################################################################################################################
@@ -45,20 +45,20 @@ jobs:
         FOLDER: /package
         PACKAGE_NAME: saphanabootstrap-formula  
     steps:
-      - uses: actions/checkout@v2 
-        with:
-          fetch-depth: 0
+    - uses: actions/checkout@v2 
+      with:
+        fetch-depth: 0
 # OSC credentials must be configured beforehand as the HOME variables cannot be changed from /github/home
 # that is used to run osc commands                
-      - name: configure OSC   
-      - run:  /scripts/init_osc_creds.sh
-      - run:  mkdir -p $HOME/.config/osc
-      - run:  cp /root/.config/osc/oscrc $HOME/.config/osc
+    - name: configure OSC   
+    - run:  /scripts/init_osc_creds.sh
+    - run:  mkdir -p $HOME/.config/osc
+    - run:  cp /root/.config/osc/oscrc $HOME/.config/osc
 
-      - name: deliver package
-      - run:  sed -i 's~%%VERSION%%~${{ github.sha }}~' _service && \
-      - run:  sed -i 's~%%REPOSITORY%%~${{ github.repository }}~' _service && \
-      - run:  /scripts/upload.sh 
+    - name: deliver package
+    - run:  sed -i 's~%%VERSION%%~${{ github.sha }}~' _service && \
+    - run:  sed -i 's~%%REPOSITORY%%~${{ github.repository }}~' _service && \
+    - run:  /scripts/upload.sh 
       
 #delivery finished        
 ##################################################################################################################
@@ -81,16 +81,16 @@ jobs:
           GITHUB_OAUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: configure OSC
-      - run: /scripts/init_osc_creds.sh
-      - run: mkdir -p $HOME/.config/osc
-      - run: cp /root/.config/osc/oscrc $HOME/.config/osc
-     
-      - name: submit package
-      - run: sed -i 's~%%VERSION%%~${{ github.sha }}~' _service && \
-      - run: sed -i 's~%%REPOSITORY%%~${{ github.repository }}~' _service && \
-      - run: /scripts/submit.sh
-      - run: echo "Finish"
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: configure OSC
+    - run: /scripts/init_osc_creds.sh
+    - run: mkdir -p $HOME/.config/osc
+    - run: cp /root/.config/osc/oscrc $HOME/.config/osc
+    
+    - name: submit package
+    - run: sed -i 's~%%VERSION%%~${{ github.sha }}~' _service && \
+    - run: sed -i 's~%%REPOSITORY%%~${{ github.repository }}~' _service && \
+    - run: /scripts/submit.sh
+    - run: echo "Finish"
