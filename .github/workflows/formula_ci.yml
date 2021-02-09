@@ -80,8 +80,8 @@ jobs:
         cp /root/.config/osc/oscrc $HOME/.config/osc
     - name: submit package
       run: sed -i 's~%%VERSION%%~${{ github.sha }}~' _service && \
-    -  run: sed -i 's~%%REPOSITORY%%~${{ github.repository }}~' _service && \
-    -  run: /scripts/submit.sh
-    -  run: echo "Finish"
+    - run: sed -i 's~%%REPOSITORY%%~${{ github.repository }}~' _service && \
+    - run: /scripts/submit.sh
+    - run: echo "Finish"
 
-    #test for submit when obs is empty test
+    #test for submit when obs is empty tes
