@@ -66,9 +66,8 @@ jobs:
       env:
         OBS_USER: ${{ secrets.OBS_USER }}
         OBS_PASS: ${{ secrets.OBS_PASS }}
-        OBS_PROJECT: ${{ secrets.OBS_PROJECT }}
-        #SECRET TARGET PROJECT WAS SET AS OBS_DOWNSTREAM_PROJECT
-        TARGET_PROJECT: ${{ secrets.OBS_DOWNSTREAM_PROJECT }}
+        OBS_PROJECT: ${{ secrets.OBS_PROJECT}}
+        TARGET_PROJECT: ${{ secrets.TARGET_PROJECT}}
 
     steps:
     - uses: actions/checkout@v2
