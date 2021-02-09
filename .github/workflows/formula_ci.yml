@@ -31,7 +31,7 @@ jobs:
         REPOSITORY: ${{ github.repository }}
         GITHUB_OAUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         OSCRC_FILE: /github/home/.config/osc/oscrc
-        FOLDER: package
+        FOLDER: /package
         PACKAGE_NAME: saphanabootstrap-formula
         
 
@@ -67,4 +67,4 @@ jobs:
         with:
           fetch-depth: 0
       -  run: /scripts/submit.sh
-      -  run: echo "Finished submbit"
+      -  run: echo "Finished submbits"
