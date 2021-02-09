@@ -3,7 +3,7 @@ name: Formula CI
 # The CI automatically publishes new releases every time a pull request is merged into master
 on: [push, pull_request]
 env:
-  PACKAGE_NAME: saphanabootstrap-formula
+  PACKAGE_NAME: saphanabootstrap-formula 
 
 jobs:
 
@@ -48,7 +48,6 @@ jobs:
       run: | 
         /scripts/init_osc_creds.sh
         mkdir -p $HOME/.config/osc
-        mkdir /tmp/osc_project/  && touch saphanabootstrap-formula.spec
         cp /root/.config/osc/oscrc $HOME/.config/osc
 
     - name: deliver package
