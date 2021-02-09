@@ -8,7 +8,7 @@ env:
 jobs:
 
   validation:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
       with:
@@ -29,7 +29,7 @@ jobs:
 
   delivery:
     needs: validation
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     if: ${{ github.event_name != 'pull_request' }}  
     container: 
       image: shap/continuous_deliver
@@ -59,7 +59,7 @@ jobs:
 
   submit:
     needs: [validation, delivery]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/master' }}    
     container:
       image: shap/continuous_deliver
