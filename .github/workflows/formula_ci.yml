@@ -36,7 +36,7 @@ jobs:
       env:
         OBS_USER: ${{ secrets.OBS_USER }}
         OBS_PASS: ${{ secrets.OBS_PASS }}
-        OBS_PROJECT: home:Servus007:saphanabootstrap-formula-delivery-step
+        OBS_PROJECT: ${{ secrets.OBS_PROJECT }}
 
     steps:
     - uses: actions/checkout@v2 
