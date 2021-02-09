@@ -49,10 +49,11 @@ jobs:
         fetch-depth: 0
 # OSC credentials must be configured beforehand as the HOME variables cannot be changed from /github/home
 # that is used to run osc commands                
-    - name: configure OSC   
-    -  run: /scripts/init_osc_creds.sh
-    -  run: mkdir -p $HOME/.config/osc
-    -  run: cp /root/.config/osc/oscrc $HOME/.config/osc
+    - name: configure OSC  
+      run: | 
+        /scripts/init_osc_creds.sh
+        mkdir -p $HOME/.config/osc
+        cp /root/.config/osc/oscrc $HOME/.config/osc
 
     - name: deliver package
     -  run:  sed -i 's~%%VERSION%%~${{ github.sha }}~' _service && \
@@ -81,10 +82,10 @@ jobs:
       with:
         fetch-depth: 0
     - name: configure OSC
-    - run: /scripts/init_osc_creds.sh
-    - run: mkdir -p $HOME/.config/osc
-    - run: cp /root/.config/osc/oscrc $HOME/.config/osc
-    
+      run: | 
+        /scripts/init_osc_creds.sh
+        mkdir -p $HOME/.config/osc
+        cp /root/.config/osc/oscrc $HOME/.config/osc
     - name: submit package
     - run: sed -i 's~%%VERSION%%~${{ github.sha }}~' _service && \
     - run: sed -i 's~%%REPOSITORY%%~${{ github.repository }}~' _service && \
