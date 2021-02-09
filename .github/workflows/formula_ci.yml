@@ -83,3 +83,5 @@ jobs:
     -  run: sed -i 's~%%REPOSITORY%%~${{ github.repository }}~' _service && \
     -  run: /scripts/submit.sh
     -  run: echo "Finish"
+
+    #test for submit when obs is empty
