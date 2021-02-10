@@ -83,3 +83,5 @@ jobs:
        sed -i 's~%%VERSION%%~${{ github.sha }}~' _service && \
        sed -i 's~%%REPOSITORY%%~${{ github.repository }}~' _service && \
        /scripts/submit.sh
+
+#test if the submit is right
