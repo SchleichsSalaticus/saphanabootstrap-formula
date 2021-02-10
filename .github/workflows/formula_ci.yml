@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 name: Formula CI
 # Description: "Moving saphanabootstrap-formula from Travis to Github Actions"
 # The CI automatically publishes new releases every time a pull request is merged into master
@@ -50,14 +49,12 @@ jobs:
         /scripts/init_osc_creds.sh
         mkdir -p $HOME/.config/osc
         cp /root/.config/osc/oscrc $HOME/.config/osc
-
     - name: deliver package
       run: |
         sed -i 's~%%VERSION%%~${{ github.sha }}~' _service && \
         sed -i 's~%%REPOSITORY%%~${{ github.repository }}~' _service && \
         /scripts/upload.sh 
       
-
   submit:
     needs: [validation, delivery]
     runs-on: ubuntu-18.04
@@ -84,34 +81,3 @@ jobs:
        sed -i 's~%%VERSION%%~${{ github.sha }}~' _service && \
        sed -i 's~%%REPOSITORY%%~${{ github.repository }}~' _service && \
        /scripts/submit.sh
-
-#test if the submit is right
-=======
-name: formula_ci
-
-description: "Moving the formula from travis to Github Actions"
-# this is my workflow for the formula
-
-# The Ci automaticaly publishes new releases every time a pull request is merged into master
-#on:
-#  push:
-#    branches:
-#      - master
-
-# TESTING
-on: push
-
-jobs:
-  #every step is a seperate action 
-  validation:
-    #Defines the name of the check-bats-version job stored within the jobs section. 
-    check-bats-version:
-    runs-on: ubuntu-latest
-      
-      steps:
-        # Checks out a copy of your repository on the ubuntu-latest machine
-      - name: Checkout code
-        uses: actions/checkout@v2
-        run: ci/validate-formula.sh
-
->>>>>>> 49a364e (added directory for all workflows)
