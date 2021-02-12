@@ -1,4 +1,4 @@
-![Formula CI](https://github.com/SchleichsSalaticus/saphanabootstrap-formula/workflows/formulaCI.yml/badge.svg)
+![formulaCI](https://github.com/SchleichsSalaticus/saphanabootstrap-formula/workflows/formulaCI/badge.svg)
 
 # SAP HANA platform bootstrap Salt formula
 
