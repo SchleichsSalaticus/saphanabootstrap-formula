@@ -1,3 +1,7 @@
+![Formula CI](https://github.com/SchleichsSalaticus/saphanabootstrap-formula/tree/master/.github/workflows/formulaCI.yml/badge.svg)
+
+
+
 # SAP HANA platform bootstrap Salt formula
 
 Salt formula to bootstrap and manage a multi SAP HANA platform environment.
